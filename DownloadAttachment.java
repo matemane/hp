@@ -187,6 +187,7 @@ public class DownloadAttachment extends JFrame {
 	private String attachFile = null;
 	private String duration = null;
 	private String saveFolder = null;
+	private String Headquarters = null;
 	private static final String propertyFile = "./conf/sfdc.properties";  //  @jve:decl-index=0:
 	private final String Soap_Address_Product = "https://www.salesforce.com/services/Soap/u/26.0";
 	private final String Soap_Address_Sandbox = "https://test.salesforce.com/services/Soap/u/26.0";
@@ -820,6 +821,7 @@ public class DownloadAttachment extends JFrame {
 		attachFile = prop.getProperty("attachFile");
 		duration = prop.getProperty("duration");
 		saveFolder = prop.getProperty("saveFolder");
+		Headquarters = prop.getProperty("Headquarters");
 		//log("saveFolder111="+saveFolder);
 		try{
 		saveFolder = new String(saveFolder.getBytes("ISO-8859-1"),"UTF-8");
@@ -910,7 +912,8 @@ public class DownloadAttachment extends JFrame {
 						+ " from LAS_Project__c "
 						+ " where misoku_up__c != null "
 						+ " and sell_offer_date__c = null "
-						+ " and status__c in ('販売中（空室）', '販売中（賃貸中）')");
+						+ " and status__c in ('販売中（空室）', '販売中（賃貸中）') "
+						+ " and Headquarters__c = '" + Headquarters + "'");
 						//+ " and (misoku_up__c = LAST_N_DAYS:" + intDays + " or status__c in ('販売中（空室）', '販売中（賃貸中）'))");
 				if(queryResult != null  && queryResult.getSize() > 0){
 					recordCount = queryResult.getSize();
